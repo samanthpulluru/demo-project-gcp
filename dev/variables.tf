@@ -11,7 +11,6 @@ variable "cluster_name" {
 variable "regional" {
   description = "Boolean flag to determine regional presence of cluster"
   default     = true
-  type        = boolean
 }
 
 variable "region" {
