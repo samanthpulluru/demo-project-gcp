@@ -1,6 +1,6 @@
 variable "project_id" {
   description = "The project ID to host the cluster in"
-  default     = "canvas-bot-307516"
+  default     = "ops-hiring-case-study-pulluru"
 }
 
 variable "cluster_name" {
