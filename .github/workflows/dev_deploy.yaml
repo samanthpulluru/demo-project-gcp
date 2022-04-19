@@ -1,0 +1,67 @@
+name: "Infrastruture deploy via Terraform"
+
+on:
+  pull_request:
+    branches:
+    - master
+    #- development
+    - feature
+    types:
+    - closed
+  workflow_dispatch: 
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest      
+    env:
+      working-directory: ./dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.1
+        
+      - name: Authenticate with GCP
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_CLOUD_CREDENTIALS }}
+          # In case of multiple environments, we can activate below format to import the respective environment keys stored as secrets into environment variables
+          #GOOGLE_APPLICATION_CREDENTIALS_DEV: ${{ secrets.GOOGLE_CLOUD_CREDENTIALS_DEV }}
+        run: |
+          echo "Authenticating the SA with GCP"
+          echo $WORK_DIR
+          echo $GOOGLE_APPLICATION_CREDENTIALS > key.json
+          gcloud auth activate-service-account --key-file=key.json
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with: 
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN_DEV }}
+      
+      - name: Terraform format
+        id: fmt
+        run: terraform fmt -check -diff
+        working-directory: ${{ env.working-directory }}
+            
+        
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: ${{ env.working-directory }}
+        
+      - name: Terraform plan
+        id: plan
+        run: |
+          export GOOGLE_APPLICATION_CREDENTIALS="key.json"
+          terraform plan
+        working-directory: ${{ env.working-directory }}
+    
+      - name: Terraform Plan Status
+        if: steps.plan.outcome == 'failure'
+        run: exit 1
+        
+      - name: Terraform Apply
+        run:  |
+          export GOOGLE_APPLICATION_CREDENTIALS="key.json"
+          terraform apply -auto-approve
+        working-directory: ${{ env.working-directory }}
+#         env:
+#           TF_VAR_credentials: $GOOGLE_APPLICATION_CREDENTIALS
