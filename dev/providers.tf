@@ -16,7 +16,7 @@ terraform {
     organization = "samanthpulluru-demo-project"
 
     workspaces {
-      name = "demo-project-dev"
+      name = "demo-project-gcp-dev"
     }
   }
   #   required_version = ">=0.13"
