@@ -8,7 +8,7 @@ variable "cluster_name" {
   default     = "demo-project-gke-cluster"
 }
 
-variable "regional" {
+variable "region_flag" {
   description = "Boolean flag to determine regional presence of cluster"
   default     = true
 }
@@ -48,7 +48,7 @@ variable "create_service_account" {
   default     = true
 }
 
-variable "horizontal_pod_scaling" {
+variable "horizontal_pod_autoscaling" {
   description = "Boolean flag to implement auto pod scaling horizontally on the cluster"
   default     = true
 }
