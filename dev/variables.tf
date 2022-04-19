@@ -111,7 +111,7 @@ variable "auto_upgrade" {
 
 variable "node_init_count" {
   description = "Cound of nods the cluster gets at the time of creation/restart"
-  default     = "e2-medium"
+  default     = 3
 }
 
 variable "terraform_service_account" {
