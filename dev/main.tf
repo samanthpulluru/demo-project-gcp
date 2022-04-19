@@ -73,8 +73,7 @@ module "gke" {
   ip_range_services          = var.ip_range_services_name
   create_service_account     = var.create_service_account
   horizontal_pod_autoscaling = var.horizontal_pod_autoscaling
-    
-  node_pools                 = [
+  node_pools = [
     {
       name               = var.node_pool_name
       machine_type       = var.machine_type
