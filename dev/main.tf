@@ -88,6 +88,6 @@ module "gke" {
       auto_upgrade       = var.auto_upgrade
       service_account    = var.terraform_service_account
       initial_node_count = var.node_init_count
-    },
+    }
   ]
 }
