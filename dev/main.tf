@@ -74,7 +74,7 @@ module "gke" {
   create_service_account     = var.create_service_account
   horizontal_pod_autoscaling = var.horizontal_pod_autoscaling
     
-  node_pools = [
+  node_pools                 = [
     {
       name               = var.node_pool_name
       machine_type       = var.machine_type
