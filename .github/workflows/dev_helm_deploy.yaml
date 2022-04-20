@@ -1,4 +1,4 @@
-ame: "Helm charts deployment"
+Name: "Helm charts deployment"
 
 on:
   push:
