@@ -11,7 +11,7 @@ jobs:
     name: 'helm deploy'
     runs-on: ubuntu-latest      
     env:
-      working-directory: ./dev/helm
+      WORK_DIR: ./dev/helm
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.1
@@ -26,7 +26,7 @@ jobs:
 
           gcloud container clusters get-credentials demo-project-gke-cluster --project ops-hiring-case-study-pulluru --region us-central1
           
-          helm lint ${working-directory}
+          helm lint $WORK_DIR
       
       # - name: Helm install
       #   uses: WyriHaximus/github-action-helm3@v2
