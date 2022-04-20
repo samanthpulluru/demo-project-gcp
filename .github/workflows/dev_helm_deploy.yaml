@@ -28,7 +28,7 @@ jobs:
           
           helm lint $WORK_DIR
       
-          helm install demo-project $WORK_DIR --namespace default
+          helm upgrade --install demo-project $WORK_DIR --namespace default
 
           export SERVICE_IP=$(kubectl get svc --namespace default demo-project -o jsonpath='***.status.loadBalancer.ingress[0].ip***')
 
