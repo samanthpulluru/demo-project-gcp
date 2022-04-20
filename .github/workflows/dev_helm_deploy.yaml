@@ -25,12 +25,8 @@ jobs:
           gcloud auth activate-service-account --key-file=key.json
 
           gcloud container clusters get-credentials demo-project-gke-cluster --project ops-hiring-case-study-pulluru --region us-central1
-
-
-      # - name: Helm lint
-      #   uses: WyriHaximus/github-action-helm3@v2
-      #   with:
-      #     exec: helm lint ${working-directory}/helm
+          
+          helm lint ${working-directory}
       
       # - name: Helm install
       #   uses: WyriHaximus/github-action-helm3@v2
