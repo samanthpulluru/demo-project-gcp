@@ -1,4 +1,4 @@
 apiVersion: v1
 description: A Helm chart to deploy Guestbook three tier web application.
-name: guestbook
+name: demo-project
 version: 0.2.0

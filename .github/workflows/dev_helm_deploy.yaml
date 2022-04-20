@@ -28,7 +28,4 @@ jobs:
           
           helm lint $WORK_DIR
       
-      # - name: Helm install
-      #   uses: WyriHaximus/github-action-helm3@v2
-      #   with:
-      #     exec: helm upgrade --install guestbook${working-directory}/helm
+          helm install demo-project $WORK_DIR --namespace default
