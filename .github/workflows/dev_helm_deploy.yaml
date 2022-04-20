@@ -26,10 +26,10 @@ jobs:
 
           gcloud container clusters get-credentials demo-project-gke-cluster --project ops-hiring-case-study-pulluru --region us-central1
           
-          helm lint $WORK_DIR
+          helm lint $WORK_DIR/*/*
       
           helm upgrade --install demo-project $WORK_DIR --namespace default
 
-          SERVICE_IP=$(kubectl get svc --namespace default demo-project -o jsonpath='***.status.loadBalancer.ingress[0].ip***')
+          #SERVICE_IP=$(kubectl get svc --namespace default demo-project -o jsonpath='***.status.loadBalancer.ingress[0].ip***')
 
-          echo http://$SERVICE_IP:3000
+          #echo http://$SERVICE_IP:3000
