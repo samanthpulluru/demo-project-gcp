@@ -34,7 +34,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v1
         with: 
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN_GCP_DEV }}
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN_DEV }}
       
       - name: Terraform format
         id: fmt
@@ -50,6 +50,7 @@ jobs:
       - name: Terraform plan
         id: plan
         run: |
+          export GOOGLE_APPLICATION_CREDENTIALS="key.json"
           terraform plan
         working-directory: ${{ env.working-directory }}
     
@@ -59,5 +60,8 @@ jobs:
         
       - name: Terraform Apply
         run:  |
+          export GOOGLE_APPLICATION_CREDENTIALS="key.json"
           terraform apply -auto-approve
         working-directory: ${{ env.working-directory }}
+#         env:
+#           TF_VAR_credentials: $GOOGLE_APPLICATION_CREDENTIALS

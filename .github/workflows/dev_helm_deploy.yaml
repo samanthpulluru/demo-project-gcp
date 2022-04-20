@@ -1,0 +1,38 @@
+ame: "Helm charts deployment"
+
+on:
+  push:
+    branches:
+    - master
+    workflow_dispatch: {}
+
+jobs:
+  helm-deploy:
+    name: 'helm deploy'
+    runs-on: ubuntu-latest      
+    env:
+      working-directory: ./dev/helm
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.0.1
+        
+      - name: GKE Helm setup
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GKE_DEPLOY_CREDENTIALS }}
+        run: |
+          echo "Authenticating the SA with GCP"
+          echo $GKE_DEPLOY_CREDENTIALS > key.json
+          gcloud auth activate-service-account --key-file=key.json
+
+          gcloud container clusters get-credentials demo-project-gke-cluster --region us-central1
+
+
+      # - name: Helm lint
+      #   uses: WyriHaximus/github-action-helm3@v2
+      #   with:
+      #     exec: helm lint ${working-directory}/helm
+      
+      # - name: Helm install
+      #   uses: WyriHaximus/github-action-helm3@v2
+      #   with:
+      #     exec: helm upgrade --install guestbook${working-directory}/helm
