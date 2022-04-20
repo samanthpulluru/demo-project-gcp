@@ -11,7 +11,7 @@ image:
 
 # For some dev env (like minikube), you may need to set the type to NodePort
 service:
-  type: LoadBalancer
+  type: NodePort
   port: 3000
 
 redis:
