@@ -21,7 +21,7 @@ jobs:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GKE_DEPLOY_CREDENTIALS }}
         run: |
           echo "Authenticating the SA with GCP"
-          echo $GKE_DEPLOY_CREDENTIALS > key.json
+          echo $GOOGLE_APPLICATION_CREDENTIALS > key.json
           gcloud auth activate-service-account --key-file=key.json
 
           gcloud container clusters get-credentials demo-project-gke-cluster --region us-central1
