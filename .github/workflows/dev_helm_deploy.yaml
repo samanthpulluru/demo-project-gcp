@@ -26,7 +26,7 @@ jobs:
 
           gcloud container clusters get-credentials demo-project-gke-cluster --project ops-hiring-case-study-pulluru --region us-central1
           
-          helm lint $WORK_DIR/*/*
+          helm lint $WORK_DIR
       
           helm upgrade --install demo-project $WORK_DIR --namespace default
 
