@@ -30,6 +30,6 @@ jobs:
       
           helm upgrade --install demo-project $WORK_DIR --namespace default
 
-          export SERVICE_IP=$(kubectl get svc --namespace default demo-project -o jsonpath='***.status.loadBalancer.ingress[0].ip***')
+          SERVICE_IP=$(kubectl get svc --namespace default demo-project -o jsonpath='***.status.loadBalancer.ingress[0].ip***')
 
           echo http://$SERVICE_IP:3000
