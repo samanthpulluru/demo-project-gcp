@@ -18,4 +18,4 @@ spec:
           service:
             name: frontend
             port: 
-              name: {{ .Values.service.port }}
+              name: {{ .Values.service.targetPort }}
