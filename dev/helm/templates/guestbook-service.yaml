@@ -20,11 +20,15 @@ metadata:
   labels:
     app: guestbook
     tier: frontend
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}'
+    cloud.google.com/app-protocols: '{"https": "HTTPS"}'
 spec:
   type: {{ .Values.service.type }}
   ports:
-    # the port that this service should serve on
-  - port: {{ .Values.service.port }}
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: {{ .Values.service.protocol }}
   selector:
     app: guestbook
     tier: frontend
