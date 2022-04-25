@@ -21,10 +21,10 @@ metadata:
     app: guestbook
     tier: frontend
 spec:
-  type: LoadBalancer
+  type: {{ .Values.service.type }}
   ports:
     # the port that this service should serve on
-  - port: 80
+  - port: {{ .Values.service.port }}
   selector:
     app: guestbook
     tier: frontend
