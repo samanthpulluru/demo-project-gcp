@@ -25,7 +25,7 @@ probes:
 
 service:
   type: NodePort
-  port: 443
+  port: 80
   targetPort: 8080
   name: https
   protocol: TCP
