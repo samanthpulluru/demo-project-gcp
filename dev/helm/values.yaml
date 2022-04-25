@@ -5,14 +5,14 @@
 replicaCount: 2
 
 image:
-  repository: ibmcom/guestbook
-  tag: v1
-  pullPolicy: Always
+  repository: us-docker.pkg.dev/google-samples/containers/gke/gb-frontend
+  tag: v5
+
 
 # For some dev env (like minikube), you may need to set the type to NodePort
 service:
-  type: NodePort
-  port: 3000
+  type: LoadBalancer
+  port: 80
 
 redis:
   port: 6379 
