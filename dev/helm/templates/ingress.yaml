@@ -5,23 +5,15 @@ metadata:
   annotations:
     kubernetes.io/ingress.allow-http: "false"
 metadata:
-  name: my-ingress-2
+  name: demo-project-ingress
 spec:
-  hosts:
-    - host:
-      paths:
-      - path: /
-        pathType: ImplementationSpecific
-        backend:
-          serviceName: https
-          servicePort: 443    
   tls:
   - secretName: https-secret
   rules:
-  - http:
-      paths:
-      - path: /*
-        pathType: ImplementationSpecific
+  - host:
+    http:
+      paths: /*
+      - pathType: ImplementationSpecific
         backend:
           serviceName: frontend
           servicePort: {{ .Values.service.port }}
