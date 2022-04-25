@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
       - name: php-redis
-        image: us-docker.pkg.dev/google-samples/containers/gke/gb-frontend:v5
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         env:
         - name: GET_HOSTS_FROM
           value: "dns"
