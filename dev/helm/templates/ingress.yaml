@@ -8,6 +8,8 @@ spec:
   tls:
     {{- range .Values.ingress.tls }}
     - secretName: {{ .secretName }}
+    {{- end }}
+  {{- end }}
   backend:
     serviceName: frontend
     servicePort: {{ .Values.service.port }}
