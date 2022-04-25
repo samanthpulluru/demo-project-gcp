@@ -20,9 +20,6 @@ metadata:
   labels:
     app: guestbook
     tier: frontend
-  annotations:
-    cloud.google.com/neg: '{"ingress": true}'
-    cloud.google.com/app-protocols: '{"https": "HTTPS"}'
 spec:
   type: {{ .Values.service.type }}
   ports:
