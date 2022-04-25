@@ -15,5 +15,7 @@ spec:
       paths:
       - pathType: ImplementationSpecific
         backend:
-          serviceName: frontend
-          servicePort: {{ .Values.service.port }}
+          service:
+            name: frontend
+            port: 
+              name: {{ .Values.service.port }}
