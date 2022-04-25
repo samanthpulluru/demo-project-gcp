@@ -12,7 +12,7 @@ spec:
   rules:
   - host:
     http:
-      paths: /*
+      paths:
       - pathType: ImplementationSpecific
         backend:
           serviceName: frontend
