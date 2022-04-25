@@ -54,7 +54,7 @@ spec:
             successThreshold: {{ .Values.probes.livenessProbe.successThreshold }}
         readinessProbe:
             exec:
-              command: ["curl","http://localhost:8080","-k"]
+              command: ["curl","http://localhost:80","-k"]
             initialDelaySeconds: {{ .Values.probes.readinessProbe.initialDelaySeconds }}
             timeoutSeconds: {{ .Values.probes.readinessProbe.timeoutSeconds }}
             periodSeconds: {{ .Values.probes.readinessProbe.periodSeconds }}         
