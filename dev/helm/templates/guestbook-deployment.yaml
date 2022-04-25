@@ -30,8 +30,9 @@ spec:
         tier: frontend
     spec:
       containers:
-      - name: php-redis
+      - name: {{ .Chart.Name }}
         image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
         - name: GET_HOSTS_FROM
           value: "dns"
@@ -40,4 +41,20 @@ spec:
             cpu: 100m
             memory: 100Mi
         ports:
-        - containerPort: 8080
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        livenessProbe:
+            tcpSocket:
+              port: {{ .Values.probes.livenessProbe.port }}
+            initialDelaySeconds: {{ .Values.probes.livenessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.probes.livenessProbe.timeoutSeconds }}
+            periodSeconds: {{ .Values.probes.livenessProbe.periodSeconds }}
+            failureThreshold: {{ .Values.probes.livenessProbe.failureThreshold }}
+            successThreshold: {{ .Values.probes.livenessProbe.successThreshold }}
+          readinessProbe:
+            exec:
+              command: ["curl","http://localhost:8080","-k"]
+            initialDelaySeconds: {{ .Values.probes.readinessProbe.initialDelaySeconds }}
+            timeoutSeconds: {{ .Values.probes.readinessProbe.timeoutSeconds }}
+            periodSeconds: {{ .Values.probes.readinessProbe.periodSeconds }}         
