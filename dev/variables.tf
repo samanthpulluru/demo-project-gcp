@@ -20,7 +20,7 @@ variable "region" {
 
 variable "zones" {
   description = "list of zones the cluster has to be deployed across"
-  default     = ["us-central1-a", "us-central1-b", "us-central1-f"]
+  default     = ["us-central1-a", "us-central1-b", "us-central1-c"]
 }
 
 variable "network" {
