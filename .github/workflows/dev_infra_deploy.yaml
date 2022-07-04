@@ -19,22 +19,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.1
-        
-      - name: Authenticate with GCP
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_CLOUD_CREDENTIALS }}
-          # In case of multiple environments, we can activate below format to import the respective environment keys stored as secrets into environment variables
-          #GOOGLE_APPLICATION_CREDENTIALS_DEV: ${{ secrets.GOOGLE_CLOUD_CREDENTIALS_DEV }}
-        run: |
-          echo "Authenticating the SA with GCP"
-          echo $WORK_DIR
-          echo $GOOGLE_APPLICATION_CREDENTIALS > key.json
-          gcloud auth activate-service-account --key-file=key.json
-      
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-        with: 
-          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN_GCP_DEV }}
       
       - name: Terraform format
         id: fmt
